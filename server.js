@@ -11,11 +11,29 @@ var PORT = 3000;
 var app = express();
 
 app.use(bodyParser.urlencoded({ extended: true, useNewUrlParser: true }));
-// app.use(express.static("public"));
+app.use(express.static("public"));
+
+// Set Handlebars.
+var exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
 
 mongoose.connect("mongodb://localhost/nyt");
 
-console.log("adsf")
+console.log("adsf");
+
+
+app.get('/', function(req, res){
+    // res.sendFile(__dirname + '/public/index.html');
+    db.Article.find({}).then( result =>{
+        console.log("finding");
+        console.log(result)
+        res.render("index", {results: result});
+    })
+        
+  });
 
 app.get("/scrape", function(req, res){
     console.log("Inside scraping")
@@ -30,7 +48,7 @@ app.get("/scrape", function(req, res){
                 title: $(this).find(".headline").text().trim(),
                 link: $(this).find("a").attr("href"),
                 summary: $(this).find(".summary").text(),
-                pic: $(this).find("img").attr("src")
+                picture: $(this).find("img").attr("src")
             }
             results.push(result);
             db.Article.create(result);
