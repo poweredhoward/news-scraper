@@ -7,6 +7,7 @@ $(document).on("click", ".note", function(){
 });
 
 $(document).on("click", ".viewNotes", function(){
+    $("#note-list").empty();
     console.log( $(this).attr("data-id") )
     art_id = $(this).attr("data-id");
     $("#view-notes-modal").modal('show');
@@ -37,4 +38,12 @@ $("#addNote").click(function(){
         })
 })
 
+
+$("#scrapenew").click(function(){
+    $.get("/scrape").then(response => {
+        console.log(response);
+        window.location.reload()
+    })
+        
+})
 
