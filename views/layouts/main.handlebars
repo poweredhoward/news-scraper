@@ -4,21 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="style.css">
+    
     <title>New York Times</title>
 </head>
 <body>
     <div class="jumbotron">
         <div class=caption>
-            <h1>Mongo Scraperrrr</h1>
+            <h1>Mongo Scraper</h1>
             <h2>Read the New York Times Tech Section</h2>
         </div>
     </div>
-    <div>
-        {{{ body }}}
+<div id="add-note-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Add Note About Article</h4>
+            </div>
+            <div class="modal-body">
+                <p>Add a note about the article</p>
+                <textarea id="noteBody" rows="4" cols="60"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="addNote" type="button" class="btn btn-primary">Add Note</button>
+            </div>
+        </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</div>
+
+
+<div id="view-notes-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Notes For This Article</h4>
+            </div>
+            <div class="modal-body">
+                <div id="note-list">
+                    {{!-- Where notes will go --}}
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="addNote" type="button" class="btn btn-primary">Add Note</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    {{!-- <div class="container"> --}}
+        {{{ body }}}
+    {{!-- </div> --}}
+    
     <script src="app.js"></script>
 </body>
 </html>

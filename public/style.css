@@ -2,3 +2,17 @@
     background-image: url("newspaper.jpg");
     background-size: cover;
 }
+
+.panel-heading {
+    background-color: blue;
+}
+
+img{
+    width: 31%;
+}
+
+.container-row{
+    /* padding: none; */
+    font-size: 170%
+}
+

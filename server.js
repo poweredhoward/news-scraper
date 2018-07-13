@@ -29,11 +29,40 @@ app.get('/', function(req, res){
     // res.sendFile(__dirname + '/public/index.html');
     db.Article.find({}).then( result =>{
         console.log("finding");
-        console.log(result)
+        // console.log(result)
         res.render("index", {results: result});
     })
         
   });
+
+app.post("/note", (req, res)=>{
+    console.log(req.body);
+    // db.Note.insert(req.body.article_id).then(
+    db.Note.create({
+        content: req.body.content
+    }).then(function(newNote){
+        db.Article.findByIdAndUpdate(
+            req.body.article_id,
+            { $push: {notes: newNote}}
+        ).then(function(data){
+            console.log(data)
+            res.json(data);
+        })
+    })    
+})
+
+
+app.get("/note/:id", function(req, res){
+    // console.log(req.body);
+    console.log(req.params.id);
+
+    db.Article.findById(req.params.id).populate("notes")
+    .then(function(notes){
+        console.log(notes);
+        res.json(notes);
+    })
+})
+
 
 app.get("/scrape", function(req, res){
     console.log("Inside scraping")
